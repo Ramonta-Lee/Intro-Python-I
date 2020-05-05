@@ -26,7 +26,50 @@ This would mean that from the command line you would call `python3 14_cal.py 4 2
 print out a calendar for April in 2015, but if you omit either the year or both values, 
 it should use today’s date to get the month and year.
 """
-
-import sys
+# These are modules
+import sys 
 import calendar
 from datetime import datetime
+
+# starts the week on a Monday displays the week headers
+# The number represents how many letters to display
+print(calendar.weekheader(3))
+print() # adds a space in your output
+
+# prints the index of the first weekday which is 0
+print(calendar.firstweekday())
+print()
+
+# prints the selected month (1-12) and the given year
+print(calendar.month(2020, 3,))
+print()
+
+# prints out the calendar in a flat list 
+print(calendar.monthcalendar(2020, 3))
+print()
+
+# prints out the calendar for the entire year
+print(calendar.calendar(2020))
+print()
+
+args = sys.argv
+if(len(args) == 1):
+     cal = calendar.TextCalendar()
+     month = datetime.now().month
+     year = datetime.now().year
+     print(cal.prmonth(year, month))
+elif(len(args) == 2):
+     cal = calendar.TextCalendar()
+     month = int(args[1])
+     year = datetime.now().year
+     print(cal.prmonth(year, month))
+elif(len(args) == 3):
+    cal = calendar.TextCalendar()
+    month = int(args[1])
+    year = int(args[2])
+    print(cal.prmonth(year, month))
+else:
+     print("wrong format")
+     print()
+     print("Expecting in format: \n> py14_cal.py(month number)(year)")
+
