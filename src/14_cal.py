@@ -48,28 +48,51 @@ print()
 print(calendar.monthcalendar(2020, 3))
 print()
 
+
+
 # prints out the calendar for the entire year
 print(calendar.calendar(2020))
 print()
 
+# prints out the corresponding integer to the day of the week: Monday = 0
+day_of_the_week = calendar.weekday(2020, 5, 8)
+print(day_of_the_week)
+print()
+
+# prints out if a year is a leap-year
+is_leap = calendar.isleap(2020)
+print(is_leap)
+print()
+
+# prints out how many leap-days over the span of years
+# it is exclusive and leaves out the given year
+how_many_leap_days = calendar.leapdays(2000, 2021)
+print(how_many_leap_days)
+print()
+
 args = sys.argv
+now = datetime.now()
+month = now.month
+year = now.year
+# the given initial argument
 if(len(args) == 1):
-     cal = calendar.TextCalendar()
-     month = datetime.now().month
-     year = datetime.now().year
-     print(cal.prmonth(year, month))
+     pass
+
+# user inputs one argument
 elif(len(args) == 2):
-     cal = calendar.TextCalendar()
      month = int(args[1])
-     year = datetime.now().year
-     print(cal.prmonth(year, month))
+     
 elif(len(args) == 3):
-    cal = calendar.TextCalendar()
     month = int(args[1])
     year = int(args[2])
-    print(cal.prmonth(year, month))
 else:
      print("wrong format")
-     print()
-     print("Expecting in format: \n> py14_cal.py(month number)(year)")
+     
+
+if month < 1 or month > 12:
+     print("error: Invalid month")
+     
+
+tc = calendar.TextCalendar()
+tc.prmonth(year, month)
 
